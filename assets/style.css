@@ -13,7 +13,7 @@
   --color-maroon-dim: #C4334E1A;
   --color-muted:      #5A6872;
   --color-line:       #C3D9E0;
-  --color-dash:       #1272BE;
+  --color-dash:       #1AB5C7;
 
   --font-display: 'Source Serif 4', Georgia, serif;
   --font-body:    'Inter', -apple-system, sans-serif;
@@ -437,7 +437,8 @@ footer.site-footer a:hover {
 /* ---------- Figure / Dashboard Image Panel ---------- */
 
 .figure {
-  background: var(--color-dash);
+  background: #FFFFFF;
+  border: 3px solid var(--color-dash);
   border-radius: 2px;
   padding: 20px;
   margin: 32px 0;
@@ -460,8 +461,8 @@ footer.site-footer a:hover {
 .figure-caption {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 20px;
+  color: var(--color-muted);
+  margin-top: 24px;
   margin-bottom: 4px;
 }
 
