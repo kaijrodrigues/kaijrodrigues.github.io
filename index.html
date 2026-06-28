@@ -65,18 +65,22 @@
       I have an equal affinity for the qualitative "why," contextualizing quant analyses
       and interactive dashboards with real consumer and user feedback.
     </p>
+    <p>
+      My foundation is in behavioral science: I graduated from <strong>UC Santa Barbara in 2024</strong>
+      with a major in Psychological and Brain Sciences and a minor in Applied Psychology.
+    </p>
   </div>
 </section>
 
 <section class="viz-section">
   <div class="wrap">
-    <div class="viz-row">
-      <div class="viz-box">
-        <img src="assets/brand-funnel-dashboard.png" alt="Brand Tracker Shiny dashboard — Brand Funnel view">
-      </div>
-      <div class="viz-box">
-        <img src="assets/conjoint_choice_task.png" alt="Example conjoint choice task">
-      </div>
+    <div class="figure">
+      <img class="zoomable" src="assets/brand-funnel-dashboard.png" alt="Brand Tracker Shiny dashboard, Brand Funnel view">
+      <p class="figure-caption">Brand Tracker, an interactive R and Shiny dashboard following the consumer funnel across sportsbooks and prediction markets. Click to enlarge.</p>
+    </div>
+    <div class="figure">
+      <img class="zoomable" src="assets/conjoint_choice_task.png" alt="Example conjoint choice task">
+      <p class="figure-caption">An example conjoint choice task from the RPG concept test survey design. Click to enlarge.</p>
     </div>
   </div>
 </section>
@@ -91,7 +95,7 @@
         <span class="num">01</span>
         <div class="title-block">
           <h3>Conjoint Analysis 101</h3>
-          <p class="finding">Designed and delivered a practitioner webinar that took business audiences from conjoint theory to a real study, fielded and analyzed live.</p>
+          <p class="finding">Designed and delivered a practitioner webinar that took business audiences from conjoint theory to a real study, analyzed live.</p>
         </div>
         <div class="tags">
           <span class="tag">Webinar</span>
@@ -153,6 +157,28 @@
     <a href="https://github.com/kaijrodrigues">github.com/kaijrodrigues</a>
   </div>
 </footer>
+
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const overlay = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('img.zoomable').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      overlay.classList.add('open');
+    });
+  });
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+</script>
 
 </body>
 </html>

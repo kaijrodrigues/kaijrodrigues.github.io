@@ -24,6 +24,18 @@ if (file.exists("brand_tracking_data.rds")) {
 }
 raw$wave_date <- as.Date(raw$wave_date)
 
+# Backward compatibility: if loading older data without preferred_label,
+# derive it from the preferred_brand flag (no "No preference" category then).
+if (!"preferred_label" %in% names(raw)) {
+  pl <- raw %>%
+    group_by(respondent_id) %>%
+    summarise(preferred_label = {
+      pb <- brand[preferred_brand == 1]
+      if (length(pb) == 1) pb else "No preference"
+    }, .groups = "drop")
+  raw <- dplyr::left_join(raw, pl, by = "respondent_id")
+}
+
 # ---- Load Google Trends data (optional) ------------------------------------
 # Produced by pull_gtrends.R. If absent, the Search Interest tab shows a notice.
 gtrends_data <- NULL
@@ -131,24 +143,15 @@ ui <- page_sidebar(
       padding: 0.6rem 0.9rem; border-radius: 0.2rem; margin-top: 0.5rem;
       font-size: 0.95rem; color: #2A2226; }
     .lead-readout strong { color: #C4334E; }
-    @media (max-width: 767px) {
-      body { overflow-x: hidden; }
-      .navbar-brand { font-size: 13px !important; white-space: normal !important;
-        line-height: 1.3; max-width: calc(100vw - 72px); }
-      .bslib-sidebar-layout { flex-direction: column !important; }
-      .bslib-sidebar-layout > .sidebar { width: 100% !important; max-width: 100% !important; }
-      .layout-columns { flex-direction: column !important; }
-      .layout-columns > * { width: 100% !important; flex: none !important; }
-    }
   "))),
-  
+
   sidebar = sidebar(
     width = 300,
     h5("Filters"),
     selectInput("brand", "Brand", choices = BRANDS, selected = "DraftKings"),
     selectInput("wave", "Month (wave)", choices = waves,
                 selected = tail(waves, 1)),
-    
+
     hr(),
     h6("Demographics"),
     checkboxGroupInput("age", "Age band", choices = age_levels,
@@ -168,7 +171,7 @@ ui <- page_sidebar(
              "Percentages are weighted incidences among US P1M sports ",
              "bettors / event-contract traders.")
   ),
-  
+
   navset_card_tab(
     # ===================== TAB 1: BRAND FUNNEL =============================
     nav_panel(
@@ -188,7 +191,7 @@ ui <- page_sidebar(
         card(card_header(textOutput("funnel_title")),
              plotOutput("funnel_plot", height = 400)),
         card(card_header("Funnel Trend Over Time"),
-             plotOutput("trend_plot", height = 450))
+             plotOutput("trend_plot", height = 360))
       ),
       layout_columns(
         col_widths = c(7, 5),
@@ -208,7 +211,7 @@ ui <- page_sidebar(
 
 # ---- Server ----------------------------------------------------------------
 server <- function(input, output, session) {
-  
+
   # demographic filter applied (brand-agnostic respondent universe)
   demo_filtered <- reactive({
     d <- raw %>%
@@ -219,12 +222,12 @@ server <- function(input, output, session) {
     if (input$bettor != "All") d <- d %>% filter(bettor_type == input$bettor)
     d
   })
-  
+
   # selected brand + selected wave
   brand_wave <- reactive({
     demo_filtered() %>% filter(brand == input$brand, wave == input$wave)
   })
-  
+
   # ---- KPI outputs ----
   fmt <- function(x) ifelse(is.na(x), "n/a", sprintf("%.1f%%", x))
   output$kpi_aware  <- renderText(fmt(wpct(brand_wave(), "aided_awareness")))
@@ -232,11 +235,11 @@ server <- function(input, output, session) {
   output$kpi_regist <- renderText(fmt(wpct(brand_wave(), "registration")))
   output$kpi_p1m    <- renderText(fmt(wpct(brand_wave(), "p1m_betting")))
   output$kpi_pref   <- renderText(fmt(wpct(brand_wave(), "preferred_brand")))
-  
+
   output$funnel_title <- renderText({
     paste0(input$brand, " — Funnel (", input$wave, ")")
   })
-  
+
   # ---- Funnel bar chart ----
   output$funnel_plot <- renderPlot({
     df <- brand_wave()
@@ -256,10 +259,10 @@ server <- function(input, output, session) {
       labs(x = NULL, y = NULL) +
       theme_bt() +
       theme(panel.grid.major.y = element_blank(),
-            axis.text.y = element_text(size = 9, color = PAL$ink),
+            axis.text.y = element_text(size = 12, color = PAL$ink),
             plot.margin = margin(8, 20, 8, 8))
   })
-  
+
   # ---- Trend over time (all stages, selected brand) ----
   output$trend_plot <- renderPlot({
     d <- demo_filtered() %>% filter(brand == input$brand)
@@ -271,43 +274,46 @@ server <- function(input, output, session) {
       pivot_longer(cols = all_of(names(FUNNEL_STAGES)),
                    names_to = "stage", values_to = "pct") %>%
       mutate(stage = factor(FUNNEL_STAGES[stage], levels = FUNNEL_STAGES))
-    
+
     ggplot(tr, aes(wave_date, pct, color = stage)) +
-      geom_line(linewidth = 1.3) + geom_point(size = 2) +
-      scale_y_continuous(breaks = c(50, 100), labels = function(x) paste0(x, "%")) +
+      geom_line(linewidth = 1) + geom_point(size = 1.6) +
+      scale_y_continuous(limits = c(0, 100), labels = label_percent(scale = 1)) +
       scale_x_date(date_labels = "%b '%y", date_breaks = "2 months") +
-      scale_color_manual(values = c("#C4334E", "#D9737F", "#C4924B",
-                                    "#8A7E83", "#4A4046")) +
+      scale_color_manual(values = c("#C4334E", "#D9737F", "#B98A6E",
+                                    "#6E8FA3", "#3F5E6E")) +
       labs(x = NULL, y = NULL, color = NULL) +
-      theme_bt() +
-      theme(
-        axis.text         = element_text(color = PAL$ink),
-        plot.background   = element_rect(fill = PAL$paper, color = NA),
-        legend.background = element_rect(fill = PAL$paper, color = NA),
-        legend.key        = element_rect(fill = NA, color = NA)
-      )
+      theme_bt()
   })
-  
+
   # ---- Preferred brand share across all brands (selected month) ----
   output$pref_plot <- renderPlot({
     d <- demo_filtered() %>% filter(wave == input$wave)
-    ps <- d %>%
-      group_by(brand) %>%
-      summarise(pct = sum(preferred_brand * weight) / sum(weight) * 100,
-                .groups = "drop") %>%
-      mutate(brand = factor(brand, levels = brand[order(pct)]))
-    
-    ggplot(ps, aes(x = brand, y = pct, fill = brand)) +
+    # Compute preferred share at respondent level from preferred_label, which
+    # includes "No preference". Each respondent contributes once (their label
+    # is identical across their brand rows), weighted by survey weight.
+    resp <- d %>%
+      group_by(respondent_id) %>%
+      summarise(label = first(preferred_label), w = first(weight), .groups = "drop")
+    total_w <- sum(resp$w)
+    ps <- resp %>%
+      group_by(label) %>%
+      summarise(pct = sum(w) / total_w * 100, .groups = "drop")
+
+    # order bars by share; pin "No preference" visually with a neutral color
+    ps <- ps %>% mutate(label = factor(label, levels = label[order(pct)]))
+    fills <- c(BRAND_COLORS, "No preference" = "#B9AEB2")
+
+    ggplot(ps, aes(x = label, y = pct, fill = label)) +
       geom_col(width = 0.7) +
-      geom_text(aes(label = sprintf("%.1f%%", pct)), hjust = -0.15, size = 4, fontface = "bold") +
-      coord_flip() +
-      scale_fill_manual(values = BRAND_COLORS, guide = "none") +
+      geom_text(aes(label = sprintf("%.1f%%", pct)), hjust = -0.15, size = 4,
+                color = PAL$ink) +
+      coord_flip(clip = "off") +
+      scale_fill_manual(values = fills, guide = "none") +
       scale_y_continuous(limits = c(0, max(ps$pct) * 1.18),
                          labels = label_percent(scale = 1)) +
       labs(x = NULL, y = NULL) +
       theme_bt() +
-      theme(panel.grid.major.y = element_blank(),
-            axis.text.y = element_text(size = 9, color = PAL$ink))
+      theme(panel.grid.major.y = element_blank())
   })
 
   # ---- Sample size table ----
@@ -317,7 +323,7 @@ server <- function(input, output, session) {
       group_by(Month = wave) %>%
       summarise(`n (respondents)` = n(), .groups = "drop")
   }, striped = TRUE, hover = TRUE, width = "100%")
-  
+
   # ===================== SEARCH INTEREST TAB ==============================
   output$gt_body <- renderUI({
     if (!HAS_GTRENDS) {
@@ -332,7 +338,8 @@ server <- function(input, output, session) {
           card(card_header("Search Interest Over Time (all brands)"),
                plotOutput("gt_trend", height = 380)),
           card(card_header(textOutput("gt_lead_title")),
-               plotOutput("gt_vs_awareness", height = 330))
+               plotOutput("gt_vs_awareness", height = 330),
+               uiOutput("gt_lead_readout"))
         ),
         layout_columns(
           col_widths = 12,
@@ -342,7 +349,7 @@ server <- function(input, output, session) {
       )
     }
   })
-  
+
   output$gt_trend <- renderPlot({
     req(HAS_GTRENDS)
     ggplot(gtrends_data, aes(wave_date, gt_index, color = brand)) +
@@ -352,9 +359,9 @@ server <- function(input, output, session) {
       labs(x = NULL, y = "Search index (0-100)", color = NULL) +
       theme_bt()
   })
-  
+
   output$gt_lead_title <- renderText(paste0(input$brand, " — Search vs Awareness"))
-  
+
   # Shared data for the overlay + readout (selected brand)
   gt_overlay_data <- reactive({
     req(HAS_GTRENDS)
@@ -365,7 +372,7 @@ server <- function(input, output, session) {
                 .groups = "drop")
     full_join(gt, aw, by = "wave_date") %>% arrange(wave_date)
   })
-  
+
   # Overlay search index and awareness %, both on a shared 0-100 frame so the
   # SHAPES can be compared (does search move before awareness?).
   output$gt_vs_awareness <- renderPlot({
@@ -382,7 +389,30 @@ server <- function(input, output, session) {
       labs(x = NULL, y = "Index / %", color = NULL) +
       theme_bt()
   })
-  
+
+  # Lead/lag readout sentence under the overlay
+  output$gt_lead_readout <- renderUI({
+    df <- gt_overlay_data()
+    ll <- lead_lag(df$gt_index, df$awareness)
+    if (is.na(ll$r)) {
+      return(div(class = "lead-readout", "Not enough data to assess lead/lag."))
+    }
+    dir <- if (ll$lag > 0) {
+      paste0("search interest <strong>leads</strong> awareness by ",
+             ll$lag, if (ll$lag == 1) " month" else " months")
+    } else if (ll$lag < 0) {
+      paste0("awareness <strong>leads</strong> search by ",
+             -ll$lag, if (-ll$lag == 1) " month" else " months")
+    } else {
+      "the two move <strong>together</strong> (no lead)"
+    }
+    strength <- if (abs(ll$r) >= 0.7) "strong" else if (abs(ll$r) >= 0.4) "moderate" else "weak"
+    div(class = "lead-readout",
+        HTML(sprintf(
+          "For <strong>%s</strong>, %s, with a %s correlation (r = %+.2f at best alignment).",
+          input$brand, dir, strength, ll$r)))
+  })
+
   output$gt_scatter <- renderPlot({
     req(HAS_GTRENDS)
     aw <- raw %>%
