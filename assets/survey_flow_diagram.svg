@@ -1,39 +1,41 @@
-<svg width="680" height="460" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg width="100%" viewBox="0 0 380 540" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img">
 <title>Survey flow diagram</title>
-<desc>A flowchart showing the survey structure: Screener, then Concept Test, then Conjoint, then a branch where RPG players answer Usage and Attitudes questions while non-RPG players skip directly to the end.</desc>
+<desc>A vertical flowchart showing the survey structure: Screener, then Concept Test, then Conjoint, then Usage and Attitudes (RPG players only), then Survey end. Non-RPG players skip the usage and attitudes section.</desc>
 <defs>
 <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
 <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }</style>
 </defs>
-<rect width="680" height="460" fill="#FFFFFF"/>
 
-<rect x="250" y="20" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
-<text x="340" y="40" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Screener</text>
-<text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">Recruit target sample</text>
+<rect x="100" y="20" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
+<text x="190" y="40" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Screener</text>
+<text x="190" y="58" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">Recruit target sample</text>
 
-<line x1="340" y1="76" x2="340" y2="114" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="190" y1="80" x2="190" y2="112" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
 
-<rect x="250" y="114" width="180" height="56" rx="6" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
-<text x="340" y="134" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#C4334E">Concept test</text>
-<text x="340" y="152" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#C4334E">Evaluate appeal</text>
+<rect x="100" y="116" width="180" height="56" rx="6" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
+<text x="190" y="136" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#C4334E">Concept test</text>
+<text x="190" y="154" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#C4334E">Evaluate appeal</text>
 
-<line x1="340" y1="170" x2="340" y2="208" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="190" y1="176" x2="190" y2="208" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
 
-<rect x="250" y="208" width="180" height="56" rx="6" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
-<text x="340" y="228" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#C4334E">Conjoint</text>
-<text x="340" y="246" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#C4334E">Feature tradeoffs</text>
+<rect x="100" y="212" width="180" height="56" rx="6" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
+<text x="190" y="232" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#C4334E">Conjoint</text>
+<text x="190" y="250" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#C4334E">Feature tradeoffs</text>
 
-<path d="M340 264 L340 300 L165 300 L165 332" fill="none" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
-<path d="M340 264 L340 300 L515 300 L515 332" fill="none" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="190" y1="272" x2="190" y2="304" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
 
-<rect x="75" y="332" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
-<text x="165" y="352" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Usage and attitudes</text>
-<text x="165" y="370" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">RPG players only</text>
+<rect x="100" y="308" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
+<text x="190" y="328" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Usage and attitudes</text>
+<text x="190" y="346" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">RPG players only</text>
 
-<rect x="425" y="332" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
-<text x="515" y="352" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Survey end</text>
-<text x="515" y="370" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">Non-RPG players skip ahead</text>
+<line x1="190" y1="368" x2="190" y2="400" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
 
-<path d="M165 388 L165 420 L515 420 L515 392" fill="none" stroke="#1A1A1A" stroke-width="1" marker-end="url(#arrow)"/>
+<rect x="100" y="404" width="180" height="56" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
+<text x="190" y="424" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#1A1A1A">Survey end</text>
+<text x="190" y="442" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5E666A">Non-RPG players skip here</text>
+
+<path d="M62 336 L40 336 L40 432 L62 432" fill="none" stroke="#5E666A" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<text x="44" y="478" text-anchor="start" font-size="11" fill="#5E666A">Non-RPG players skip the</text>
+<text x="44" y="494" text-anchor="start" font-size="11" fill="#5E666A">usage and attitudes section</text>
 
 </svg>

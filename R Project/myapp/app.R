@@ -131,6 +131,15 @@ ui <- page_sidebar(
       padding: 0.6rem 0.9rem; border-radius: 0.2rem; margin-top: 0.5rem;
       font-size: 0.95rem; color: #2A2226; }
     .lead-readout strong { color: #C4334E; }
+    @media (max-width: 767px) {
+      body { overflow-x: hidden; }
+      .navbar-brand { font-size: 13px !important; white-space: normal !important;
+        line-height: 1.3; max-width: calc(100vw - 72px); }
+      .bslib-sidebar-layout { flex-direction: column !important; }
+      .bslib-sidebar-layout > .sidebar { width: 100% !important; max-width: 100% !important; }
+      .layout-columns { flex-direction: column !important; }
+      .layout-columns > * { width: 100% !important; flex: none !important; }
+    }
   "))),
   
   sidebar = sidebar(

@@ -617,7 +617,10 @@ footer.site-footer a:hover {
     grid-template-columns: 1fr;
   }
   .hero-photo {
-    max-height: 280px;
+    width: 140px;
+    max-height: 190px;
+    margin: 0 auto;
+    order: -1;
   }
   .browser-content {
     padding: 28px 24px 32px;
@@ -633,4 +636,7 @@ footer.site-footer a:hover {
   .site-header nav { gap: 16px; }
   .hero { padding: 40px 0 48px; }
   .code-link-box { flex-direction: column; align-items: flex-start; }
+  .project-body p,
+  .project-body ul { max-width: 100%; }
+  .prev-next { flex-direction: column; gap: 16px; }
 }

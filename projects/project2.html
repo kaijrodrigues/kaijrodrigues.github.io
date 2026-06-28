@@ -40,39 +40,41 @@
     <section>
       <h2>Overview</h2>
       <p>
-        The US sports betting and prediction markets landscape has fragmented rapidly — <strong>legal sportsbooks,
-        CFTC-regulated event contracts, and decentralized prediction markets</strong> now compete for overlapping
-        audiences, yet they are rarely analyzed side by side. This project asks a straightforward brand
-        health question: <strong>who is winning consumer mindshare, and why?</strong>
+        Between July 2024 and June 2025, the prediction market space hit a real inflection point.
+        Kalshi and Polymarket both saw substantial revenue growth over the period: Kalshi following a
+        landmark court ruling that cleared it to offer political event contracts, Polymarket posting
+        record volume around the 2024 US election. Traditional sportsbooks kept their lead by share,
+        but the competitive landscape was shifting fast.
       </p>
       <p>
-        The goal was to build a repeatable tracking system that surfaces funnel movement — from awareness
-        through to preferred brand — at the individual platform level, and layers in Google Trends data
-        to understand whether search interest is a <strong>leading or lagging indicator</strong> of brand health shifts.
+        This project tracks that shift across <strong>legal sportsbooks, event contracts, and prediction markets</strong>.
+        The dataset is an AI-generated synthetic brand health survey built using <strong>Claude Sonnet 4.6</strong>,
+        producing monthly reads for each platform from July 2024 through June 2025, paired with
+        <strong>real Google Trends data</strong> sourced over the same period. Together they power a
+        five-stage consumer funnel tracker asking: <strong>who is winning mindshare, and where are the gaps?</strong>
       </p>
     </section>
 
     <section>
       <h2>Approach</h2>
       <p>
-        The tracker was built in two parts: a synthetic brand health survey panel and a Google Trends
-        pull, both structured as longitudinal wave data. The interactive dashboard was built entirely
-        in <strong>R</strong> using <strong>Shiny</strong> and deployed as a static app via <strong>Shinylive</strong>,
-        requiring no server infrastructure.
+        The tracker runs on two data sources: a <strong>synthetic brand health survey</strong> generated
+        using Claude Sonnet 4.6 (monthly waves, July 2024 through June 2025) and <strong>real Google Trends</strong>
+        data pulled for the same window. The interactive dashboard was built in <strong>R</strong> with
+        <strong>Shiny</strong> and deployed via <strong>Shinylive</strong>, so it runs entirely in the browser.
       </p>
       <ul>
-        <li><strong>Brand funnel:</strong> Five-stage consumer funnel (Aided Awareness → Consideration → Registration → P1M Betting → Preferred Brand) tracked across seven platforms and multiple demographic cuts</li>
-        <li><strong>Search interest:</strong> Google Trends relative search volume indexed by platform, overlaid against awareness to evaluate lead/lag dynamics</li>
-        <li><strong>Platforms tracked:</strong> DraftKings, FanDuel, bet365, PrizePicks, Kalshi, Robinhood, PolyMarket</li>
-        <li><strong>Filters:</strong> Age band, gender, region, income, and bettor type — all applied dynamically to every chart in the dashboard</li>
+        <li><strong>Brand funnel:</strong> Five-stage funnel (Aided Awareness → Consideration → Registration → P1M Betting → Preferred Brand) tracked monthly across seven platforms</li>
+        <li><strong>Search interest:</strong> Google Trends relative search volume overlaid against awareness to surface lead/lag dynamics</li>
+        <li><strong>Platforms:</strong> DraftKings, FanDuel, bet365, PrizePicks, Kalshi, Robinhood, PolyMarket</li>
+        <li><strong>Filters:</strong> Age band, gender, region, income, and bettor type (casual vs. heavy, based on self-reported frequency of wagering activity), all applied dynamically</li>
       </ul>
     </section>
 
     <section>
       <h2>Dashboard</h2>
       <p>
-        The dashboard has two tabs — <strong>Brand Funnel</strong> and <strong>Search Interest</strong> — with a
-        sidebar for filtering by brand, demographic cuts, and bettor type. Launch it below to interact with the full app.
+        The dashboard has two tabs: <strong>Brand Funnel</strong> and <strong>Search Interest</strong>. Use the sidebar to select a brand, apply demographic filters, and explore how funnel performance shifts across segments.
       </p>
 
       <div class="viz-section">
@@ -87,21 +89,18 @@
       </div>
 
       <div style="text-align:center; margin-top:28px;">
-        <a class="btn primary" href="../apps/project2/" target="_blank" rel="noopener">Launch Dashboard &nearr;</a>
+        <a class="btn primary" href="../apps/project2/" target="_blank" rel="noopener" style="padding: 14px 56px; font-size: 13px;">Launch Dashboard &nearr;</a>
       </div>
     </section>
 
     <section>
       <h2>Business Implications</h2>
-      <p>
-        Brand trackers of this structure surface several commercially actionable signals that a
-        one-time study cannot:
-      </p>
+      <p>A brand tracker like this surfaces signals a one-time study can't:</p>
       <ul>
-        <li><strong>Funnel leakage by stage:</strong> A large gap between Consideration and Registration typically points to a friction or trust barrier at the product or regulatory level — not a brand awareness problem. Correctly diagnosing this changes where investment goes.</li>
-        <li><strong>Category momentum:</strong> Tracking all three categories together reveals whether growth in prediction markets is coming from net-new bettors or from cannibalization of sportsbook share — a critical distinction for competitive strategy.</li>
-        <li><strong>Search as an early signal:</strong> Where search interest consistently leads brand awareness, platforms can use Trends spikes as an early warning system — either to capitalize on rising salience or to manage reputational events before they register in survey data.</li>
-        <li><strong>Demographic targeting:</strong> Funnel conversion rates vary substantially by age band and bettor type, informing where acquisition spend is most efficient and where retention efforts should focus.</li>
+        <li><strong>Funnel leaks tell you where to invest.</strong> A gap between Consideration and Registration is a product or trust problem, not an awareness problem. That distinction changes where budget goes.</li>
+        <li><strong>Know where growth is coming from.</strong> Are prediction market gains pulling in new bettors, or pulling away from sportsbooks? The answer is decisive for how you position and where you compete.</li>
+        <li><strong>Search spikes are an early warning.</strong> Where Trends leads awareness, brands can get ahead of rising salience with timely media and creative before it shows up in survey data.</li>
+        <li><strong>Young prediction market users are an underserved advertising opportunity.</strong> Kalshi and Polymarket show notably higher Registration and P1M Betting rates among younger cohorts than traditional sportsbooks. This audience is engaged and growing, making it well-suited for targeted digital campaigns and brand ambassador programs.</li>
       </ul>
     </section>
 
