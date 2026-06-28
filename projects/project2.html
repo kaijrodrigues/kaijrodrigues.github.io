@@ -42,30 +42,31 @@
       <p>
         Prediction markets stopped being a niche curiosity in 2024. Polymarket cleared roughly
         <strong>$9 billion in trading volume</strong> on the year, most of it riding the US presidential
-        election. Kalshi won a <strong>landmark court ruling</strong> in September 2024 that cleared it to
+        election. Kalshi won a landmark court ruling in September 2024 that cleared it to
         list political event contracts, sending its volumes climbing into 2025. Sportsbooks still owned
         the category by share, but the ground was moving fast.
       </p>
       <p>
-        I wanted to see how that shift was registering with actual consumers, so I built a brand health
-        tracker spanning all three competing categories: <strong>legal sportsbooks, CFTC-regulated event
-        contracts, and prediction markets</strong>. Because no public panel follows these platforms
-        head-to-head, I generated a synthetic survey dataset with <strong>Claude Sonnet 4.6</strong>, monthly
-        reads for each platform from July 2024 through June 2025, and paired it with <strong>real Google
-        Trends data</strong> from the same window. The result is a five-stage funnel tracker that follows
-        each brand from awareness to preference and tests whether search interest leads or lags brand health.
+        To see how that shift was landing with consumers, I built a <strong>five-stage brand funnel
+        tracker</strong> across all three competing categories: legal sportsbooks, CFTC-regulated event
+        contracts, and prediction markets. It runs on a synthetic survey dataset I generated with
+        Claude Sonnet 4.6 (monthly reads, July 2024 through June 2025), paired with real Google
+        Trends data, and tests whether search interest leads or lags brand health.
+      </p>
+      <p style="font-size: 14px; color: var(--color-muted);">
+        Note: the survey figures are a methods demonstration, generated to show the reasoning a live
+        tracker enables, not to report real market share. The Google Trends data is real.
       </p>
     </section>
 
     <section>
       <h2>Approach</h2>
       <p>
-        The tracker runs on two data sources: a <strong>synthetic brand health survey</strong> generated
-        using Claude Sonnet 4.6 (monthly waves, July 2024 through June 2025) and <strong>real Google Trends</strong>
-        data pulled for the same window. The interactive dashboard was built in <strong>R</strong> with
-        <strong>Shiny</strong> and deployed via <strong>Shinylive</strong>, so it runs entirely in the browser.
+        The dashboard is built in R with Shiny and deployed via Shinylive, so it runs entirely
+        in the browser with no server.
       </p>
       <ul>
+        <li><strong>Screening:</strong> Every respondent is a past-month sports bettor or event-contract trader, so each read reflects active participants, not the general public</li>
         <li><strong>Brand funnel:</strong> Five-stage funnel (Aided Awareness → Consideration → Registration → P1M Betting → Preferred Brand) tracked monthly across seven platforms</li>
         <li><strong>Search interest:</strong> Google Trends relative search volume overlaid against awareness to surface lead/lag dynamics</li>
         <li><strong>Platforms:</strong> DraftKings, FanDuel, bet365, PrizePicks, Kalshi, Robinhood, PolyMarket</li>
@@ -76,7 +77,7 @@
     <section>
       <h2>Dashboard</h2>
       <p>
-        The dashboard has two tabs: <strong>Brand Funnel</strong> and <strong>Search Interest</strong>. Use the sidebar to select a brand, apply demographic filters, and explore how funnel performance shifts across segments.
+        Two tabs, <strong>Brand Funnel</strong> and <strong>Search Interest</strong>, both responding live to the sidebar filters.
       </p>
 
       <div class="figure">
@@ -95,12 +96,14 @@
 
     <section>
       <h2>Business Implications</h2>
-      <p>A brand tracker like this surfaces signals a one-time study can't:</p>
+      <p>A year of monthly reads surfaces patterns a single snapshot would miss:</p>
       <ul>
-        <li><strong>Funnel leaks tell you where to invest.</strong> A gap between Consideration and Registration is a product or trust problem, not an awareness problem. That distinction changes where budget goes.</li>
-        <li><strong>Know where growth is coming from.</strong> Are prediction market gains pulling in new bettors, or pulling away from sportsbooks? The answer is decisive for how you position and where you compete.</li>
-        <li><strong>Search spikes are an early warning.</strong> Where Trends leads awareness, brands can get ahead of rising salience with timely media and creative before it shows up in survey data.</li>
-        <li><strong>Young prediction market users are an underserved advertising opportunity.</strong> Kalshi and Polymarket show notably higher Registration and P1M Betting rates among younger cohorts than traditional sportsbooks. This audience is engaged and growing, making it well-suited for targeted digital campaigns and brand ambassador programs.</li>
+        <li><strong>Kalshi's gap isn't awareness, it's trust.</strong> Aided awareness doubles over the year (33% to 60%), but only about 57% of aware users move on to consideration, against roughly 80% for DraftKings. The leak sits at the top of the funnel, where credibility and education matter more than reach.</li>
+        <li><strong>The election permanently lifted the prediction-market floor.</strong> P1M betting roughly triples into the November 2024 election (Kalshi 6% to 16%, Polymarket 8% to 18%), then holds at about 63% of peak by February 2025. The spike fades, but active usage settles well above where it began.</li>
+        <li><strong>Young bettors are the prediction-market base, and they're underserved.</strong> Under-35s bet with Kalshi and Polymarket at 2.5 to 3 times the rate of the 45-and-up group, while DraftKings and FanDuel stay flat across age. The incumbents have no age advantage to defend in event contracts, leaving a young, engaged audience wide open to targeted digital media and ambassador-led marketing.</li>
+        <li><strong>Prediction markets win trial but not loyalty.</strong> Among people who actually bet with them, only about 40% name a prediction market their preferred brand, versus roughly 55% for DraftKings and FanDuel. The shortfall is about preference and retention, not just scale.</li>
+        <li><strong>The largest single opening is the undecided.</strong> About 17% of casual bettors name no preferred brand at all, a bigger bloc than any one challenger's share. That preference is still unclaimed.</li>
+        <li><strong>The incumbents are nearly out of headroom.</strong> DraftKings and FanDuel sit around 94% awareness with only 4 to 5 points of yearly growth left. Their next gains have to come from conversion and defending preference, not new reach.</li>
       </ul>
     </section>
 
