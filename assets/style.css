@@ -1,18 +1,18 @@
 /* ============================================
    Kai Rodrigues — Portfolio
-   Design system: white / ink / maroon
+   Design system: white / ink / cherry / ice
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --color-bg: #FFFFFF;
-  --color-warm: #F7F4EF;
+  --color-warm: #E5F2F7;
   --color-ink: #1A1A1A;
-  --color-maroon: #7A1F2B;
-  --color-maroon-dim: #7A1F2B1a;
-  --color-muted: #6B6560;
-  --color-line: #E5E2DE;
+  --color-maroon: #C4334E;
+  --color-maroon-dim: #C4334E1A;
+  --color-muted: #5A6872;
+  --color-line: #C3D9E0;
 
   --font-display: 'Source Serif 4', Georgia, serif;
   --font-body: 'Inter', -apple-system, sans-serif;
@@ -63,6 +63,7 @@ button:focus-visible {
 /* ---------- Header / Nav ---------- */
 
 header.site-header {
+  border-top: 3px solid var(--color-maroon);
   border-bottom: 1px solid var(--color-line);
   padding: 28px 0;
 }
@@ -188,8 +189,8 @@ header.site-header {
 }
 
 .btn.primary:hover {
-  background: #5e1620;
-  border-color: #5e1620;
+  background: #A52B42;
+  border-color: #A52B42;
 }
 
 /* ---------- About body ---------- */
@@ -333,6 +334,7 @@ footer.site-footer a:hover {
 /* ---------- Project Detail Page ---------- */
 
 .project-hero {
+  background: var(--color-warm);
   padding: 56px 0 40px;
   border-bottom: 1px solid var(--color-line);
 }
@@ -378,6 +380,8 @@ footer.site-footer a:hover {
   text-transform: uppercase;
   color: var(--color-maroon);
   margin: 0 0 16px;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-maroon);
 }
 
 .project-body p {
@@ -396,9 +400,10 @@ footer.site-footer a:hover {
 
 .figure {
   border: 1px solid var(--color-line);
+  border-top: 3px solid var(--color-maroon);
   border-radius: 2px;
-  padding: 28px;
-  background: #FAFAF8;
+  padding: 24px;
+  background: var(--color-warm);
   margin: 24px 0;
 }
 
@@ -406,6 +411,15 @@ footer.site-footer a:hover {
   width: 100%;
   display: block;
   border-radius: 2px;
+}
+
+.figure img.zoomable {
+  cursor: zoom-in;
+  transition: opacity 0.15s ease;
+}
+
+.figure img.zoomable:hover {
+  opacity: 0.88;
 }
 
 .figure-caption {
@@ -459,6 +473,40 @@ footer.site-footer a:hover {
 }
 
 .prev-next a:hover { color: var(--color-maroon); }
+
+/* ---------- Lightbox ---------- */
+
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 18, 22, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.lightbox-overlay.open {
+  display: flex;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 32px 96px rgba(0, 0, 0, 0.6);
+  animation: lb-in 0.18s ease;
+  cursor: default;
+}
+
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
 
 /* ---------- Responsive ---------- */
 
