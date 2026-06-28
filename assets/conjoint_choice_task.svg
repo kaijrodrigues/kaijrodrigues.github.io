@@ -1,0 +1,61 @@
+<svg width="680" height="470" viewBox="0 0 680 470" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Conjoint choice task mock-up</title>
+<desc>A mock conjoint choice task showing three RPG game profiles defined by setting, pricing model, in-game activities, and social content, plus a none-of-these option. Respondents pick their preferred profile.</desc>
+<defs>
+<style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }</style>
+</defs>
+<rect width="680" height="470" fill="#FFFFFF"/>
+
+<rect x="34" y="34" width="612" height="402" rx="10" fill="none" stroke="#E0E4E4" stroke-width="1"/>
+<rect x="27" y="27" width="612" height="402" rx="10" fill="none" stroke="#E0E4E4" stroke-width="1"/>
+<rect x="20" y="20" width="612" height="402" rx="10" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1"/>
+
+<text x="326" y="58" text-anchor="middle" font-size="15" font-weight="600" fill="#1A1A1A">Which of these games would you choose to play?</text>
+<text x="326" y="78" text-anchor="middle" font-size="11" fill="#5E666A">Choice task 1 of 10</text>
+
+<rect x="44" y="98" width="176" height="248" rx="8" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
+<text x="132" y="120" text-anchor="middle" font-size="11" font-weight="600" fill="#C4334E" letter-spacing="0.5">PROFILE A</text>
+<line x1="60" y1="132" x2="204" y2="132" stroke="#C4334E" stroke-width="0.5" opacity="0.4"/>
+<text x="60" y="154" font-size="10" fill="#5E666A">Setting</text>
+<text x="60" y="170" font-size="12" font-weight="500" fill="#1A1A1A">High fantasy</text>
+<text x="60" y="196" font-size="10" fill="#5E666A">Pricing</text>
+<text x="60" y="212" font-size="12" font-weight="500" fill="#1A1A1A">One-time + expansions</text>
+<text x="60" y="238" font-size="10" fill="#5E666A">In-game activities</text>
+<text x="60" y="254" font-size="12" font-weight="500" fill="#1A1A1A">Group raids</text>
+<text x="60" y="280" font-size="10" fill="#5E666A">Social content</text>
+<text x="60" y="296" font-size="12" font-weight="500" fill="#1A1A1A">Solo-first, optional</text>
+<rect x="60" y="312" width="144" height="22" rx="5" fill="#1A1A1A"/>
+<text x="132" y="323" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#FFFFFF">Choose</text>
+
+<rect x="234" y="98" width="176" height="248" rx="8" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
+<text x="322" y="120" text-anchor="middle" font-size="11" font-weight="600" fill="#C4334E" letter-spacing="0.5">PROFILE B</text>
+<line x1="250" y1="132" x2="394" y2="132" stroke="#C4334E" stroke-width="0.5" opacity="0.4"/>
+<text x="250" y="154" font-size="10" fill="#5E666A">Setting</text>
+<text x="250" y="170" font-size="12" font-weight="500" fill="#1A1A1A">Sci-fi fantasy</text>
+<text x="250" y="196" font-size="10" fill="#5E666A">Pricing</text>
+<text x="250" y="212" font-size="12" font-weight="500" fill="#1A1A1A">Free trial + monthly</text>
+<text x="250" y="238" font-size="10" fill="#5E666A">In-game activities</text>
+<text x="250" y="254" font-size="12" font-weight="500" fill="#1A1A1A">Player economy</text>
+<text x="250" y="280" font-size="10" fill="#5E666A">Social content</text>
+<text x="250" y="296" font-size="12" font-weight="500" fill="#1A1A1A">Balanced solo/group</text>
+<rect x="250" y="312" width="144" height="22" rx="5" fill="#1A1A1A"/>
+<text x="322" y="323" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#FFFFFF">Choose</text>
+
+<rect x="424" y="98" width="176" height="248" rx="8" fill="#C4334E15" stroke="#C4334E" stroke-width="1"/>
+<text x="512" y="120" text-anchor="middle" font-size="11" font-weight="600" fill="#C4334E" letter-spacing="0.5">PROFILE C</text>
+<line x1="440" y1="132" x2="584" y2="132" stroke="#C4334E" stroke-width="0.5" opacity="0.4"/>
+<text x="440" y="154" font-size="10" fill="#5E666A">Setting</text>
+<text x="440" y="170" font-size="12" font-weight="500" fill="#1A1A1A">Post-apocalyptic</text>
+<text x="440" y="196" font-size="10" fill="#5E666A">Pricing</text>
+<text x="440" y="212" font-size="12" font-weight="500" fill="#1A1A1A">One-time + monthly</text>
+<text x="440" y="238" font-size="10" fill="#5E666A">In-game activities</text>
+<text x="440" y="254" font-size="12" font-weight="500" fill="#1A1A1A">PvP competitive</text>
+<text x="440" y="280" font-size="10" fill="#5E666A">Social content</text>
+<text x="440" y="296" font-size="12" font-weight="500" fill="#1A1A1A">Group-focused</text>
+<rect x="440" y="312" width="144" height="22" rx="5" fill="#1A1A1A"/>
+<text x="512" y="323" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#FFFFFF">Choose</text>
+
+<rect x="44" y="362" width="556" height="44" rx="8" fill="#FFFFFF" stroke="#5E666A" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="326" y="384" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#5E666A">None of these — I would not play any of them</text>
+
+</svg>
