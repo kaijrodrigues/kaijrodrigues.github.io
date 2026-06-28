@@ -1,6 +1,6 @@
 /* ============================================
    Kai Rodrigues — Portfolio
-   Design system: white / ink / cherry / aqua
+   Design system: white / ink / cherry
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -10,10 +10,9 @@
   --color-ink:        #1A1A1A;
   --color-maroon:     #C4334E;
   --color-maroon-dim: #C4334E15;
+  --color-maroon-lt:  #CF4D63;
   --color-muted:      #5E666A;
   --color-line:       #E0E4E4;
-  --color-dash:       #BCE0DF;
-  --color-dash-deep:  #7BBFBE;
 
   --font-display: 'Source Serif 4', Georgia, serif;
   --font-body:    'Inter', -apple-system, sans-serif;
@@ -114,63 +113,81 @@ header.site-header {
 /* ---------- Hero ---------- */
 
 .hero {
-  padding: 64px 0 56px;
+  padding: 56px 0 64px;
   border-bottom: 1px solid var(--color-line);
+}
+
+/* Browser window frame */
+.browser-window {
+  border: 2px solid var(--color-maroon);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(196, 51, 78, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Title bar / chrome */
+.browser-chrome {
+  background: var(--color-maroon);
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.browser-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  display: block;
+}
+
+.browser-title {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+  text-align: center;
+}
+
+/* Content area */
+.browser-content {
+  background: var(--color-bg);
+  padding: 40px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 28px;
-  align-items: start;
-  margin-bottom: 40px;
-}
-
-/* Dashboard panel */
-.hero-panel {
-  background: var(--color-dash);
-  padding: 40px;
-  border-radius: 3px;
-  box-shadow: 5px 5px 0 var(--color-maroon);
-}
-
-.hero-panel .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-maroon);
-  margin: 0 0 16px;
-  display: flex;
+  grid-template-columns: 1fr 180px;
+  gap: 32px;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 32px;
 }
 
-.hero-panel .eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--color-maroon);
-  flex-shrink: 0;
-}
-
-.hero-panel h1 {
+.hero-grid h1 {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.6vw, 36px);
+  font-size: clamp(24px, 3.8vw, 38px);
   line-height: 1.18;
   font-weight: 600;
   color: var(--color-ink);
   margin: 0;
-  max-width: none;
 }
 
 /* Headshot slot — 3:4 ratio */
 .hero-photo {
   aspect-ratio: 3 / 4;
-  border-radius: 3px;
+  border-radius: 6px;
   overflow: hidden;
-  background: #F0F4F4;
-  border: 2px dashed var(--color-line);
+  background: #F5F5F5;
+  border: 1.5px dashed var(--color-line);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +217,7 @@ header.site-header {
 }
 
 .hero p.lede {
-  font-size: 16.5px;
+  font-size: 16px;
   color: var(--color-muted);
   max-width: 58ch;
   margin: 0 0 28px;
@@ -235,14 +252,14 @@ header.site-header {
 }
 
 .btn.primary {
-  background: var(--color-dash);
-  border-color: var(--color-dash-deep);
-  color: var(--color-ink);
+  background: var(--color-maroon);
+  border-color: var(--color-maroon);
+  color: var(--color-bg);
 }
 
 .btn.primary:hover {
-  background: var(--color-dash-deep);
-  border-color: var(--color-dash-deep);
+  background: var(--color-maroon-lt);
+  border-color: var(--color-maroon-lt);
 }
 
 /* ---------- About body ---------- */
@@ -445,20 +462,19 @@ footer.site-footer a:hover {
 
 .project-body li { margin-bottom: 10px; }
 
-/* ---------- Figure / Dashboard Image Panel ---------- */
+/* ---------- Figure / Image Card ---------- */
 
 .figure {
-  background: var(--color-dash);
-  border-radius: 3px;
-  padding: 20px;
+  border: 2px solid var(--color-maroon);
+  border-radius: 8px;
+  overflow: hidden;
   margin: 32px 0;
-  box-shadow: 5px 5px 0 var(--color-maroon);
+  box-shadow: 0 4px 24px rgba(196, 51, 78, 0.1);
 }
 
 .figure img {
   width: 100%;
   display: block;
-  border-radius: 2px;
 }
 
 .figure img.zoomable {
@@ -466,14 +482,15 @@ footer.site-footer a:hover {
   transition: opacity 0.15s ease;
 }
 
-.figure img.zoomable:hover { opacity: 0.9; }
+.figure img.zoomable:hover { opacity: 0.92; }
 
 .figure-caption {
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--color-muted);
-  margin-top: 20px;
-  margin-bottom: 4px;
+  padding: 14px 18px;
+  margin: 0;
+  border-top: 1px solid var(--color-line);
   line-height: 1.6;
 }
 
@@ -562,10 +579,10 @@ footer.site-footer a:hover {
     grid-template-columns: 1fr;
   }
   .hero-photo {
-    max-height: 280px;
+    max-height: 260px;
   }
-  .hero-panel {
-    box-shadow: 4px 4px 0 var(--color-maroon);
+  .browser-content {
+    padding: 28px 24px 32px;
   }
   .index-row {
     grid-template-columns: 1fr;
@@ -573,6 +590,6 @@ footer.site-footer a:hover {
   }
   .index-row .tags { justify-content: flex-start; }
   .site-header nav { gap: 16px; }
-  .hero { padding: 48px 0 40px; }
+  .hero { padding: 40px 0 48px; }
   .code-link-box { flex-direction: column; align-items: flex-start; }
 }
