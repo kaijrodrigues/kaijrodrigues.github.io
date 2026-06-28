@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Title Three — Kai Rodrigues</title>
+<title>Survey Analysis — Kai Rodrigues</title>
+<meta name="description" content="An R-based quantitative analysis of survey data — statistical modeling, segmentation, and visualization of consumer or user responses.">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -24,8 +25,9 @@
     <a class="breadcrumb" href="../index.html#projects">&larr; All projects</a>
     <h1>Project Title Three</h1>
     <div class="meta-row">
-      <span class="tag">Quant</span>
+      <span class="tag">Survey Research</span>
       <span class="tag">R</span>
+      <span class="tag">Quant</span>
       <span class="tag">2026</span>
     </div>
   </div>
@@ -37,53 +39,60 @@
     <section>
       <h2>Question</h2>
       <p>
-        What was the team trying to learn? Frame the business or product question
-        this research was designed to answer — one or two sentences, written for
-        someone skimming.
+        <!-- What was the business or research question this survey was designed to answer? -->
       </p>
     </section>
 
     <section>
-      <h2>Method</h2>
+      <h2>Data &amp; Method</h2>
       <p>
-        Describe the approach: study design, sample, instrument, and any relevant
-        constraints. Be specific about sample size, recruitment, and timeframe —
-        these are the credibility signals a research audience looks for first.
+        <!-- Describe the survey instrument, sample, fielding window, and any weighting or cleaning steps. -->
       </p>
       <ul>
-        <li>Method detail one — e.g. survey instrument, fielding window</li>
-        <li>Method detail two — e.g. sample composition</li>
-        <li>Method detail three — e.g. analysis approach (regression, clustering, etc.)</li>
+        <li><!-- Sample: e.g. n=XXX, recruited via [panel/platform], fielded [date range] --></li>
+        <li><!-- Instrument: e.g. X-item questionnaire covering [topics] --></li>
+        <li><!-- Analysis: e.g. regression, clustering, MaxDiff utilities, factor analysis in R --></li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Analysis</h2>
+      <p>
+        <!-- Describe the analytical approach: what models were run, what segments or patterns emerged, what the R output revealed. -->
+      </p>
+
+      <div class="viz-section">
+        <div class="viz-row">
+          <div class="viz-box">
+            <!-- Add chart: <img class="zoomable" src="../assets/p3-chart-1.png" alt=""> -->
+          </div>
+          <div class="viz-box">
+            <!-- Add chart: <img class="zoomable" src="../assets/p3-chart-2.png" alt=""> -->
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
       <h2>Key Finding</h2>
       <p>
-        State the headline finding plainly, in one or two sentences, before showing
-        the chart. The visualization should support a claim the reader already
-        knows is coming.
+        <!-- State the headline result plainly, then interpret: what does it mean and what action did it support? -->
       </p>
 
       <div class="figure">
-        <img src="../assets/images/project3-chart.png" alt="Description of the chart or visualization for this project">
-        <p class="figure-caption">Fig. 1 — Replace with a one-line description of what this chart shows.</p>
+        <!-- Add figure: <img class="zoomable" src="../assets/p3-figure.png" alt=""> -->
+        <p class="figure-caption">Fig. 1 — Description goes here.</p>
       </div>
-
-      <p>
-        Follow-up interpretation: what does this mean, and what did the team do
-        (or recommend doing) as a result?
-      </p>
     </section>
 
     <section>
       <h2>Code &amp; Data</h2>
       <div class="code-link-box">
         <div>
-          <p class="label">View on GitHub</p>
-          <p class="repo-name">kaijrodrigues/project-three</p>
+          <p class="label">R Script</p>
+          <p class="repo-name"><!-- analysis-script.R or GitHub repo name --></p>
         </div>
-        <a class="btn primary" href="https://github.com/kaijrodrigues/project-three">View repository</a>
+        <a class="btn primary" href="#">View on GitHub</a>
       </div>
     </section>
 
@@ -101,6 +110,28 @@
     <a href="https://github.com/kaijrodrigues">github.com/kaijrodrigues</a>
   </div>
 </footer>
+
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const overlay = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('img.zoomable').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      overlay.classList.add('open');
+    });
+  });
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+</script>
 
 </body>
 </html>

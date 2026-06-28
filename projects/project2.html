@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Title Two — Kai Rodrigues</title>
+<title>Brand Tracker: Sportsbooks vs. Prediction Markets — Kai Rodrigues</title>
+<meta name="description" content="A brand tracking dashboard examining Google Trends data and brand health metrics across legal sportsbooks, event contracts, and prediction markets.">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -22,10 +23,11 @@
 <section class="project-hero">
   <div class="wrap">
     <a class="breadcrumb" href="../index.html#projects">&larr; All projects</a>
-    <h1>Project Title Two</h1>
+    <h1>Brand Tracker: Sportsbooks, Event Contracts &amp; Prediction Markets</h1>
     <div class="meta-row">
-      <span class="tag">Interviews</span>
-      <span class="tag">UX</span>
+      <span class="tag">Brand Tracking</span>
+      <span class="tag">Google Trends</span>
+      <span class="tag">Power BI</span>
       <span class="tag">2026</span>
     </div>
   </div>
@@ -37,53 +39,74 @@
     <section>
       <h2>Question</h2>
       <p>
-        What was the team trying to learn? Frame the business or product question
-        this research was designed to answer — one or two sentences, written for
-        someone skimming.
+        How have consumer interest and brand health shifted across three adjacent but distinct
+        betting categories — <strong>legal sportsbooks, event contracts, and prediction markets</strong> — as the
+        regulatory landscape evolved and new platforms entered the market? Which category is
+        gaining mindshare, and what events are driving inflection points?
       </p>
     </section>
 
     <section>
-      <h2>Method</h2>
+      <h2>Approach</h2>
       <p>
-        Describe the approach: study design, sample, instrument, and any relevant
-        constraints. Be specific about sample size, recruitment, and timeframe —
-        these are the credibility signals a research audience looks for first.
+        The tracker combines search-volume data from <strong>Google Trends</strong> with brand health
+        metrics to build a longitudinal view of category momentum and relative brand standing.
+        Key platforms within each category are tracked head-to-head, with a linked annotation
+        table surfacing the regulatory, product, and media events that correspond to spikes or
+        drops in search interest.
       </p>
       <ul>
-        <li>Method detail one — e.g. survey instrument, fielding window</li>
-        <li>Method detail two — e.g. sample composition</li>
-        <li>Method detail three — e.g. analysis approach (regression, clustering, etc.)</li>
+        <li><strong>Data sources:</strong> Google Trends (relative search volume), brand health surveys</li>
+        <li><strong>Categories tracked:</strong> Legal sportsbooks (e.g. DraftKings, FanDuel), event contracts (e.g. Kalshi, CFTC-regulated venues), prediction markets (e.g. Polymarket, Manifold)</li>
+        <li><strong>Deliverables:</strong> Interactive Power BI dashboard; supporting Excel workbook with raw data and annotation log</li>
       </ul>
     </section>
 
     <section>
-      <h2>Key Finding</h2>
+      <h2>Dashboard</h2>
       <p>
-        State the headline finding plainly, in one or two sentences, before showing
-        the chart. The visualization should support a claim the reader already
-        knows is coming.
+        The Power BI dashboard is organized into three views: a category-level trends overview,
+        a brand-level comparison within each category, and an event annotation panel linking
+        key dates to observed search-volume and sentiment shifts.
       </p>
 
-      <div class="figure">
-        <img src="../assets/images/project2-chart.png" alt="Description of the chart or visualization for this project">
-        <p class="figure-caption">Fig. 1 — Replace with a one-line description of what this chart shows.</p>
+      <div class="viz-section">
+        <div class="viz-row">
+          <div class="viz-box">
+            <!-- Add screenshot: <img class="zoomable" src="../assets/p2-trends-overview.png" alt="Google Trends overview — category comparison"> -->
+          </div>
+          <div class="viz-box">
+            <!-- Add screenshot: <img class="zoomable" src="../assets/p2-brand-metrics.png" alt="Brand health metrics dashboard panel"> -->
+          </div>
+        </div>
       </div>
 
       <p>
-        Follow-up interpretation: what does this mean, and what did the team do
-        (or recommend doing) as a result?
+        A third panel (below) presents the event annotation table — a log of regulatory decisions,
+        platform launches, and media events that correspond to inflection points in the trend data.
       </p>
+
+      <div class="figure">
+        <!-- Add screenshot: <img class="zoomable" src="../assets/p2-annotation-table.png" alt="Event annotation table linking dates to trend inflections"> -->
+        <p class="figure-caption">Fig. 1 — Event annotation table: regulatory milestones, platform launches, and media events mapped to trend inflections.</p>
+      </div>
     </section>
 
     <section>
-      <h2>Code &amp; Data</h2>
+      <h2>Files</h2>
       <div class="code-link-box">
         <div>
-          <p class="label">View on GitHub</p>
-          <p class="repo-name">kaijrodrigues/project-two</p>
+          <p class="label">Power BI Report</p>
+          <p class="repo-name">Brand Tracker — Sportsbooks vs. Prediction Markets</p>
         </div>
-        <a class="btn primary" href="https://github.com/kaijrodrigues/project-two">View repository</a>
+        <a class="btn primary" href="#">Download .pbix</a>
+      </div>
+      <div class="code-link-box" style="margin-top: 16px;">
+        <div>
+          <p class="label">Excel Workbook</p>
+          <p class="repo-name">Brand Tracker — Data &amp; Annotation Log</p>
+        </div>
+        <a class="btn primary" href="#">Download .xlsx</a>
       </div>
     </section>
 
@@ -101,6 +124,28 @@
     <a href="https://github.com/kaijrodrigues">github.com/kaijrodrigues</a>
   </div>
 </footer>
+
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const overlay = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('img.zoomable').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      overlay.classList.add('open');
+    });
+  });
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+</script>
 
 </body>
 </html>
