@@ -40,18 +40,20 @@
     <section>
       <h2>Overview</h2>
       <p>
-        Between July 2024 and June 2025, the prediction market space hit a real inflection point.
-        Kalshi and Polymarket both saw substantial revenue growth over the period: Kalshi following a
-        landmark court ruling that cleared it to offer political event contracts, Polymarket posting
-        record volume around the 2024 US election. Traditional sportsbooks kept their lead by share,
-        but the competitive landscape was shifting fast.
+        Prediction markets stopped being a niche curiosity in 2024. Polymarket cleared roughly
+        <strong>$9 billion in trading volume</strong> on the year, most of it riding the US presidential
+        election. Kalshi won a <strong>landmark court ruling</strong> in September 2024 that cleared it to
+        list political event contracts, sending its volumes climbing into 2025. Sportsbooks still owned
+        the category by share, but the ground was moving fast.
       </p>
       <p>
-        This project tracks that shift across <strong>legal sportsbooks, event contracts, and prediction markets</strong>.
-        The dataset is an AI-generated synthetic brand health survey built using <strong>Claude Sonnet 4.6</strong>,
-        producing monthly reads for each platform from July 2024 through June 2025, paired with
-        <strong>real Google Trends data</strong> sourced over the same period. Together they power a
-        five-stage consumer funnel tracker asking: <strong>who is winning mindshare, and where are the gaps?</strong>
+        I wanted to see how that shift was registering with actual consumers, so I built a brand health
+        tracker spanning all three competing categories: <strong>legal sportsbooks, CFTC-regulated event
+        contracts, and prediction markets</strong>. Because no public panel follows these platforms
+        head-to-head, I generated a synthetic survey dataset with <strong>Claude Sonnet 4.6</strong>, monthly
+        reads for each platform from July 2024 through June 2025, and paired it with <strong>real Google
+        Trends data</strong> from the same window. The result is a five-stage funnel tracker that follows
+        each brand from awareness to preference and tests whether search interest leads or lags brand health.
       </p>
     </section>
 
@@ -77,15 +79,13 @@
         The dashboard has two tabs: <strong>Brand Funnel</strong> and <strong>Search Interest</strong>. Use the sidebar to select a brand, apply demographic filters, and explore how funnel performance shifts across segments.
       </p>
 
-      <div class="viz-section">
-        <div class="viz-row">
-          <div class="viz-box">
-            <!-- <img class="zoomable" src="../assets/p2-funnel.png" alt="Brand Funnel tab — funnel chart, trend over time, and preferred brand share"> -->
-          </div>
-          <div class="viz-box">
-            <!-- <img class="zoomable" src="../assets/p2-search.png" alt="Search Interest tab — Google Trends index overlaid with aided awareness"> -->
-          </div>
-        </div>
+      <div class="figure">
+        <img class="zoomable" src="../assets/brand-funnel-dashboard.png" alt="Brand Funnel tab: five-stage funnel, trend over time, and preferred brand share">
+        <p class="figure-caption">The Brand Funnel tab tracks the five-stage funnel, its movement over time, and preferred brand share, all responsive to the sidebar filters.</p>
+      </div>
+      <div class="figure">
+        <img class="zoomable" src="../assets/search_interest_dashboard.png" alt="Search Interest tab: Google Trends index overlaid with aided awareness">
+        <p class="figure-caption">The Search Interest tab overlays each platform's Google Trends search index against aided awareness to surface lead and lag dynamics.</p>
       </div>
 
       <div style="text-align:center; margin-top:28px;">
