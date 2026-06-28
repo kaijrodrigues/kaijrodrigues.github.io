@@ -1,22 +1,23 @@
 /* ============================================
    Kai Rodrigues — Portfolio
-   Design system: white / ink / cherry / ice
+   Design system: white / ink / cherry / dash-blue
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --color-bg: #FFFFFF;
-  --color-warm: #E5F2F7;
-  --color-ink: #1A1A1A;
-  --color-maroon: #C4334E;
+  --color-bg:         #FFFFFF;
+  --color-warm:       #EDF6FA;
+  --color-ink:        #1A1A1A;
+  --color-maroon:     #C4334E;
   --color-maroon-dim: #C4334E1A;
-  --color-muted: #5A6872;
-  --color-line: #C3D9E0;
+  --color-muted:      #5A6872;
+  --color-line:       #C3D9E0;
+  --color-dash:       #1272BE;
 
   --font-display: 'Source Serif 4', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', monospace;
 
   --content-width: 760px;
   --gutter: 24px;
@@ -24,9 +25,7 @@
 
 * { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -43,10 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: var(--color-ink);
-  text-decoration: none;
-}
+a { color: var(--color-ink); text-decoration: none; }
 
 a:focus-visible,
 button:focus-visible {
@@ -100,54 +96,102 @@ header.site-header {
 }
 
 .site-header nav a:hover,
-.site-header nav a.active {
-  color: var(--color-ink);
-}
+.site-header nav a.active { color: var(--color-ink); }
 
 .site-header nav a.active::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
   background: var(--color-maroon);
 }
 
-/* ---------- Hero / About ---------- */
+/* ---------- Hero ---------- */
 
 .hero {
-  background: var(--color-warm);
-  padding: 92px 0 72px;
+  padding: 64px 0 56px;
   border-bottom: 1px solid var(--color-line);
 }
 
-.hero .eyebrow {
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 36px;
+}
+
+/* Dashboard panel — the blue box */
+.hero-panel {
+  background: var(--color-dash);
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 6px 6px 0 var(--color-maroon);
+}
+
+.hero-panel .eyebrow {
   font-family: var(--font-mono);
   font-size: 12.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-maroon);
+  color: rgba(255, 255, 255, 0.65);
   margin: 0 0 18px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.hero .eyebrow::before {
+.hero-panel .eyebrow::before {
   content: '';
   width: 22px;
   height: 1px;
-  background: var(--color-maroon);
+  background: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
 }
 
-.hero h1 {
+.hero-panel h1 {
   font-family: var(--font-display);
-  font-size: clamp(34px, 5vw, 48px);
-  line-height: 1.13;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.15;
   font-weight: 600;
-  margin: 0 0 22px;
-  max-width: 14ch;
+  color: #FFFFFF;
+  margin: 0;
+  max-width: none;
+}
+
+/* Headshot slot — 3:4 ratio */
+.hero-photo {
+  aspect-ratio: 3 / 4;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--color-warm);
+  border: 2px dashed var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-photo::after {
+  content: '── headshot ──';
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.hero-photo:has(img)::after { display: none; }
+
+.hero-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
 }
 
 .hero p.lede {
@@ -162,6 +206,8 @@ header.site-header {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* ---------- Buttons ---------- */
 
 .btn {
   font-family: var(--font-mono);
@@ -223,7 +269,6 @@ header.site-header {
 /* ---------- Project Index ---------- */
 
 .project-index {
-  background: var(--color-warm);
   padding: 60px 0 80px;
 }
 
@@ -242,24 +287,16 @@ header.site-header {
   border-bottom: 1px solid var(--color-line);
   border-radius: 3px;
   transition: padding-left 0.18s ease, background-color 0.18s ease;
-}
-
-.index-row:first-child {
-  padding-top: 0;
-}
-
-.index-row a.row-link {
-  position: absolute;
-  inset: 0;
-}
-
-.index-row {
   position: relative;
 }
 
+.index-row:first-child { padding-top: 0; }
+
+.index-row a.row-link { position: absolute; inset: 0; }
+
 .index-row:hover {
   padding-left: 8px;
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: rgba(18, 114, 190, 0.05);
 }
 
 .index-row .num {
@@ -334,7 +371,6 @@ footer.site-footer a:hover {
 /* ---------- Project Detail Page ---------- */
 
 .project-hero {
-  background: var(--color-warm);
   padding: 56px 0 40px;
   border-bottom: 1px solid var(--color-line);
 }
@@ -398,19 +434,20 @@ footer.site-footer a:hover {
 
 .project-body li { margin-bottom: 8px; }
 
+/* ---------- Figure / Dashboard Image Panel ---------- */
+
 .figure {
-  border: 1px solid var(--color-line);
-  border-top: 3px solid var(--color-maroon);
+  background: var(--color-dash);
   border-radius: 2px;
-  padding: 24px;
-  background: var(--color-warm);
-  margin: 24px 0;
+  padding: 20px;
+  margin: 32px 0;
+  box-shadow: 6px 6px 0 var(--color-maroon);
 }
 
 .figure img {
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .figure img.zoomable {
@@ -418,17 +455,17 @@ footer.site-footer a:hover {
   transition: opacity 0.15s ease;
 }
 
-.figure img.zoomable:hover {
-  opacity: 0.88;
-}
+.figure img.zoomable:hover { opacity: 0.88; }
 
 .figure-caption {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--color-muted);
-  margin-top: 14px;
-  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+  margin-bottom: 4px;
 }
+
+/* ---------- Slides box ---------- */
 
 .code-link-box {
   border: 1px solid var(--color-ink);
@@ -489,9 +526,7 @@ footer.site-footer a:hover {
   -webkit-backdrop-filter: blur(6px);
 }
 
-.lightbox-overlay.open {
-  display: flex;
-}
+.lightbox-overlay.open { display: flex; }
 
 .lightbox-overlay img {
   max-width: 90vw;
@@ -511,16 +546,21 @@ footer.site-footer a:hover {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 600px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo {
+    max-height: 320px;
+  }
+  .hero-panel {
+    box-shadow: 4px 4px 0 var(--color-maroon);
+  }
   .index-row {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .index-row .tags {
-    justify-content: flex-start;
-  }
-  .site-header nav {
-    gap: 16px;
-  }
-  .hero { padding: 56px 0 48px; }
+  .index-row .tags { justify-content: flex-start; }
+  .site-header nav { gap: 16px; }
+  .hero { padding: 48px 0 40px; }
   .code-link-box { flex-direction: column; align-items: flex-start; }
 }
