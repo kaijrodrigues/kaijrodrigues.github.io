@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brand Tracker: Sportsbooks vs. Prediction Markets — Kai Rodrigues</title>
-<meta name="description" content="A brand tracking dashboard examining Google Trends data and brand health metrics across legal sportsbooks, event contracts, and prediction markets.">
+<meta name="description" content="An interactive brand tracking dashboard built in R and Shinylive examining consumer funnel metrics and Google Trends data across legal sportsbooks, event contracts, and prediction markets.">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -27,7 +27,8 @@
     <div class="meta-row">
       <span class="tag">Brand Tracking</span>
       <span class="tag">Google Trends</span>
-      <span class="tag">Power BI</span>
+      <span class="tag">R</span>
+      <span class="tag">Shiny</span>
       <span class="tag">2026</span>
     </div>
   </div>
@@ -37,77 +38,65 @@
   <div class="wrap">
 
     <section>
-      <h2>Question</h2>
+      <h2>Overview</h2>
       <p>
-        How have consumer interest and brand health shifted across three adjacent but distinct
-        betting categories — <strong>legal sportsbooks, event contracts, and prediction markets</strong> — as the
-        regulatory landscape evolved and new platforms entered the market? Which category is
-        gaining mindshare, and what events are driving inflection points?
+        The US sports betting and prediction markets landscape has fragmented rapidly — <strong>legal sportsbooks,
+        CFTC-regulated event contracts, and decentralized prediction markets</strong> now compete for overlapping
+        audiences, yet they are rarely analyzed side by side. This project asks a straightforward brand
+        health question: <strong>who is winning consumer mindshare, and why?</strong>
+      </p>
+      <p>
+        The goal was to build a repeatable tracking system that surfaces funnel movement — from awareness
+        through to preferred brand — at the individual platform level, and layers in Google Trends data
+        to understand whether search interest is a <strong>leading or lagging indicator</strong> of brand health shifts.
       </p>
     </section>
 
     <section>
       <h2>Approach</h2>
       <p>
-        The tracker combines search-volume data from <strong>Google Trends</strong> with brand health
-        metrics to build a longitudinal view of category momentum and relative brand standing.
-        Key platforms within each category are tracked head-to-head, with a linked annotation
-        table surfacing the regulatory, product, and media events that correspond to spikes or
-        drops in search interest.
+        The tracker was built in two parts: a synthetic brand health survey panel and a Google Trends
+        pull, both structured as longitudinal wave data. The interactive dashboard was built entirely
+        in <strong>R</strong> using <strong>Shiny</strong> and deployed as a static app via <strong>Shinylive</strong>,
+        requiring no server infrastructure.
       </p>
       <ul>
-        <li><strong>Data sources:</strong> Google Trends (relative search volume), brand health surveys</li>
-        <li><strong>Categories tracked:</strong> Legal sportsbooks (e.g. DraftKings, FanDuel), event contracts (e.g. Kalshi, CFTC-regulated venues), prediction markets (e.g. Polymarket, Manifold)</li>
-        <li><strong>Deliverables:</strong> Interactive Power BI dashboard; supporting Excel workbook with raw data and annotation log</li>
+        <li><strong>Brand funnel:</strong> Five-stage consumer funnel (Aided Awareness → Consideration → Registration → P1M Betting → Preferred Brand) tracked across seven platforms and multiple demographic cuts</li>
+        <li><strong>Search interest:</strong> Google Trends relative search volume indexed by platform, overlaid against awareness to evaluate lead/lag dynamics</li>
+        <li><strong>Platforms tracked:</strong> DraftKings, FanDuel, bet365, PrizePicks, Kalshi, Robinhood, PolyMarket</li>
+        <li><strong>Filters:</strong> Age band, gender, region, income, and bettor type — all applied dynamically to every chart in the dashboard</li>
       </ul>
     </section>
 
     <section>
       <h2>Dashboard</h2>
       <p>
-        The Power BI dashboard is organized into three views: a category-level trends overview,
-        a brand-level comparison within each category, and an event annotation panel linking
-        key dates to observed search-volume and sentiment shifts.
+        The dashboard below is fully interactive. Use the sidebar to select a brand and apply demographic
+        filters, then navigate between the <strong>Brand Funnel</strong> and <strong>Search Interest</strong> tabs.
       </p>
 
       <div class="viz-section">
-        <div class="viz-row">
-          <div class="viz-box">
-            <!-- Add screenshot: <img class="zoomable" src="../assets/p2-trends-overview.png" alt="Google Trends overview — category comparison"> -->
-          </div>
-          <div class="viz-box">
-            <!-- Add screenshot: <img class="zoomable" src="../assets/p2-brand-metrics.png" alt="Brand health metrics dashboard panel"> -->
-          </div>
-        </div>
-      </div>
-
-      <p>
-        A third panel (below) presents the event annotation table — a log of regulatory decisions,
-        platform launches, and media events that correspond to inflection points in the trend data.
-      </p>
-
-      <div class="figure">
-        <!-- Add screenshot: <img class="zoomable" src="../assets/p2-annotation-table.png" alt="Event annotation table linking dates to trend inflections"> -->
-        <p class="figure-caption">Fig. 1 — Event annotation table: regulatory milestones, platform launches, and media events mapped to trend inflections.</p>
+        <iframe
+          src="../apps/project2/"
+          width="100%"
+          height="950"
+          style="border:none; border-radius:8px; display:block;">
+        </iframe>
       </div>
     </section>
 
     <section>
-      <h2>Files</h2>
-      <div class="code-link-box">
-        <div>
-          <p class="label">Power BI Report</p>
-          <p class="repo-name">Brand Tracker — Sportsbooks vs. Prediction Markets</p>
-        </div>
-        <a class="btn primary" href="#">Download .pbix</a>
-      </div>
-      <div class="code-link-box" style="margin-top: 16px;">
-        <div>
-          <p class="label">Excel Workbook</p>
-          <p class="repo-name">Brand Tracker — Data &amp; Annotation Log</p>
-        </div>
-        <a class="btn primary" href="#">Download .xlsx</a>
-      </div>
+      <h2>Business Implications</h2>
+      <p>
+        Brand trackers of this structure surface several commercially actionable signals that a
+        one-time study cannot:
+      </p>
+      <ul>
+        <li><strong>Funnel leakage by stage:</strong> A large gap between Consideration and Registration typically points to a friction or trust barrier at the product or regulatory level — not a brand awareness problem. Correctly diagnosing this changes where investment goes.</li>
+        <li><strong>Category momentum:</strong> Tracking all three categories together reveals whether growth in prediction markets is coming from net-new bettors or from cannibalization of sportsbook share — a critical distinction for competitive strategy.</li>
+        <li><strong>Search as an early signal:</strong> Where search interest consistently leads brand awareness, platforms can use Trends spikes as an early warning system — either to capitalize on rising salience or to manage reputational events before they register in survey data.</li>
+        <li><strong>Demographic targeting:</strong> Funnel conversion rates vary substantially by age band and bettor type, informing where acquisition spend is most efficient and where retention efforts should focus.</li>
+      </ul>
     </section>
 
     <nav class="prev-next">

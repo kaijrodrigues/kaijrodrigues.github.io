@@ -1,0 +1,77 @@
+# Auto-deploy this Shiny app to GitHub Pages as a serverless Shinylive site.
+#
+# Contract (per posit-dev/r-shinylive):
+#   - Inspect the repo root for package dependencies
+#   - Install R and the discovered packages
+#   - Export the Shiny app to ./site via shinylive::export()
+#   - On push to main, deploy ./site to GitHub Pages
+#
+# One-time setup in your repo:
+#   Settings -> Pages -> Source: "GitHub Actions"
+#   (and ensure Actions has write permission to Pages, configured via the
+#    permissions block below).
+
+name: Deploy app
+
+on:
+  push:
+    branches: [main]
+  # allow manual runs from the Actions tab
+  workflow_dispatch:
+    inputs:
+      cache-version:
+        description: "Cache version (bump to bust the package cache)"
+        required: false
+        default: "1"
+
+# Required permissions for deploying to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; cancel in-progress runs on new pushes
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: rstudio/shiny-workflows/setup-r-package@v1
+        with:
+          packages: |
+            renv
+            posit-dev/r-shinylive
+            sessioninfo
+          cache-version: ${{ github.event.inputs.cache-version }}
+
+      - name: Find package dependencies
+        shell: Rscript {0}
+        run: |
+          # Discover app dependencies with {renv} and install with {pak}
+          pak::pak(unique(renv::dependencies(".")$Package))
+
+      - name: Build site
+        shell: Rscript {0}
+        run: |
+          shinylive::export(".", "site")
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "site"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
