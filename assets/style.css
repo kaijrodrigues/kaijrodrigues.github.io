@@ -521,8 +521,8 @@ footer.site-footer a:hover {
 .figure img.zoomable:hover { opacity: 0.92; }
 
 .figure-caption {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-family: var(--font-body);
+  font-size: 13px;
   color: var(--color-muted);
   padding: 14px 18px;
   margin: 0;
